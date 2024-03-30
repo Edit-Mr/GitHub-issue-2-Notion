@@ -7,7 +7,7 @@ const {markdownToBlocks} = require('@tryfabric/martian');
 
 async function main() {
     const repo = core.getInput('repo');
-    const notionToken = core.getInput('NOTION_DATABASE_ID');
+    const notionToken = core.getInput('NOTION_API_KEY');
     const notionDatabaseId = core.getInput('NOTION_DATABASE_ID');
 
 
