@@ -89,11 +89,9 @@ async function main() {
                     },
                 },
                 Labels: {
-                    multi_select: issue.labels.map(label => {
-                        return {
-                            name: label.name,
-                        };
-                    }),
+                    multi_select: issue.labels.map(label => ({
+                        name: label.name,
+                    })),
                 },
                 URL: {
                     url: issue.html_url,
