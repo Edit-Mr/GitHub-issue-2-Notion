@@ -1,0 +1,10 @@
+name: Sync GitHub Issues to Notion
+author: Elvis Mao
+description: A simple tool to sync GitHub issues to Notion beautifully.
+branding:
+  color: gray-dark
+  icon: activity
+
+runs:
+  using: "node12"
+  main: "index.js"

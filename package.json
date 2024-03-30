@@ -1,0 +1,20 @@
+{
+  "name": "github-issue-2-notion",
+  "version": "1.0.0",
+  "description": "A simple tool to sync GitHub issues to Notion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "github",
+    "notion"
+  ],
+  "author": "Elvis Mao",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@tryfabric/martian": "^1.2.4",
+    "dotenv": "^16.4.5",
+    "request": "^2.88.2"
+  }
+}
