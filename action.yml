@@ -6,5 +6,20 @@ branding:
   icon: activity
 
 runs:
-  using: "node20"
-  main: "index.js"
+  runs-on: ubuntu-latest
+  steps:
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: create env file
+      run: |
+        touch .env
+        echo GITHUB_REPO_OWNER=${{ github.repository_owner }} >> .env
+        echo GITHUB_REPO_NAME=${{ github.repository }} >> .env
+        echo NOTION_API_KEY=${{ secrets.NOTION_API_KEY }} >> .env
+        echo NOTION_DATABASE_ID=${{ secrets.NOTION_DATABASE_ID}} >> .env
+      - name: Sync issues with Notion
+        run: node index.js
