@@ -13,6 +13,7 @@ A simple tool to sync GitHub issues to Notion beautifully
 - [x] Sync URL to Notion
 - [x] Sync content to Notion with full markdown support
 - [x] Won't repeat recreating the same issue
+- [x] Update status if exists
 
 ## Usage
 
@@ -31,7 +32,7 @@ name: Sync issues to Notion
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited, deleted, closed, reopened]
   workflow_dispatch:
 jobs:
   sync:
