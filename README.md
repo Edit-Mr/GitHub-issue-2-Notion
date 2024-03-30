@@ -25,17 +25,15 @@ name: Sync issues to Notion
 on:
   issues:
     types: [opened, edited, deleted, reopened, closed]
-
+  workflow_dispatch:
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: create env file
-        run: |
-          touch .env
-          echo GITHUB_REPO_OWNER=${{ github.repository_owner }} >> .env
-          echo GITHUB_REPO_NAME=${{ github.repository }} >> .env
-          echo NOTION_API_KEY=${{ secrets.NOTION_API_KEY }} >> .env
-          echo NOTION_DATABASE_ID=${{ secrets.NOTION_DATABASE_ID}} >> .env
-      - uses: Edit-Mr/GitHub-issue-2-Notion@main
+      - name: Notion GitHub Issues Automation
+        uses: Edit-Mr/GitHub-issue-2-Notion@main
+        with:
+            repo: ${{ github.repository }} 
+            NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+            NOTION_DATABASE: ${{ secrets.NOTION_DATABASE_ID }}
 ```

@@ -1,14 +1,15 @@
 /** @format */
 
+// Load the required modules
+const core = require('@actions/core');
 const request = require("request");
-require("dotenv").config();
 const {markdownToBlocks} = require('@tryfabric/martian');
 
 async function main() {
-    // Get environment variables
-    const repo = process.env["GITHUB_OWNER"] + "/" + process.env["GITHUB_REPO"];
-    const notionDatabaseId = process.env["NOTION_DATABASE_ID"];
-    const notionToken = process.env["NOTION_API_KEY"];
+    const repo = core.getInput('repo');
+    const notionToken = core.getInput('NOTION_DATABASE_ID');
+    const notionDatabaseId = core.getInput('NOTION_DATABASE_ID');
+
 
     // Get all issues from the public repository
     const issuesUrl = `https://api.github.com/repos/${repo}/issues`;
