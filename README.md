@@ -30,12 +30,6 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Use Node.js 20
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-      - name: Install dependencies
-        run: npm install
       - name: create env file
         run: |
           touch .env
