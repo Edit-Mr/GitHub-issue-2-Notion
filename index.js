@@ -60,7 +60,7 @@ async function main() {
                 }
             );
         });
-        const body = JSON.stringify({
+        const body = {
             parent: { database_id: notionDatabaseId },
             icon: {
                 emoji: "⚡",
@@ -80,7 +80,7 @@ async function main() {
                 },
                 State: {
                     select: {
-                        name: "Open",
+                        name: issue.state.charAt(0).toUpperCase() + issue.state.slice(1)
                     },
                 },
                 Status: {
@@ -98,13 +98,15 @@ async function main() {
                 },
             },
             children: issue.body != null ? markdownToBlocks(issue.body) : [],
-        });
+        };
         if (notionResponse.results.length > 0) {
             console.log(
                 `Issue ${issueId} already exists in Notion, updating it`
             );
             // Update the issue in Notion
             const notionPageId = notionResponse.results[0].id;
+            // remove Status from body
+            delete body.properties.Status;
             const updateUrl = `https://api.notion.com/v1/pages/${notionPageId}`;
             const updateResponse = await new Promise((resolve, reject) => {
                 request(
@@ -116,7 +118,7 @@ async function main() {
                             "Content-Type": "application/json",
                             "Notion-Version": "2022-06-28",
                         },
-                        body: body,
+                        body: JSON.stringify(body),
                     },
                     (error, response, body) => {
                         if (error) {
@@ -141,7 +143,7 @@ async function main() {
                             "Content-Type": "application/json",
                             "Notion-Version": "2022-06-28",
                         },
-                        body: body,
+                        body: JSON.stringify(body),
                     },
                     (error, response, body) => {
                         console.log(body);
