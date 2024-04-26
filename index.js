@@ -11,7 +11,7 @@ async function main() {
     const notionDatabaseId = core.getInput("NOTION_DATABASE_ID");
 
     // Get all issues from the public repository
-    const issuesUrl = `https://api.github.com/repos/${repo}/issues`;
+    const issuesUrl = `https://api.github.com/repos/${repo}/issues?state=all`;
     // use GET request to get all issues
     const issuesResponse = await new Promise((resolve, reject) => {
         request(
